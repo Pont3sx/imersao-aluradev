@@ -1,0 +1,51 @@
+[
+{
+    "eixos":"Educação",
+    "descricao":"Qualidade do ensino, inclusão educacional e desafios estruturais..."
+},
+
+{
+    "eixos":"Saúde",
+    "descricao":"SUS, acesso ao sistema público, prevenção de doenças e bem-estar coletivo..."
+},
+
+{
+    "eixos":"Meio Ambiente",
+    "descricao":"Sustentabilidade, mudanças climáticas e preservação dos recursos naturais..."
+},
+
+{
+    "eixos":"Tecnologia",
+    "descricao":"Inovação digital, inteligência artificial e transformações sociais..."
+},
+
+{
+    "eixos":"Cultura",
+    "descricao":"Diversidade cultural, patrimônio artístico e acesso às expressões culturais..."
+},
+
+{
+    "eixos":"Segurança Pública",
+    "descricao":"Violência urbana, políticas de proteção e sistema prisional..."
+},
+
+{
+    "eixos":"Economia",
+    "descricao":"Desenvolvimento econômico, mercado de trabalho e desigualdades financeiras..."
+},
+
+{
+    "eixos":"Política / Cidadania",
+    "descricao":"Democracia, participação social e direitos fundamentais..."
+},
+
+{
+    "eixos":"Desigualdade / Questões Sociais",
+    "descricao":"Pobreza, exclusão social e barreiras de acesso a direitos básicos..."
+},
+
+{
+    "eixos":"Ciência & Inovação",
+    "descricao":"Pesquisa científica, avanços tecnológicos e impacto na sociedade..."
+}
+]
