@@ -7,11 +7,12 @@
 
 /*Variáveis (Propriedades customizadas)*/
 :root {
-    --primary-color: #6EACDA;
-    --secondary-color: #e8eaed;
+    --primary-color: #000000;
+    --secondary-color: #748092;
     --tertiary-color: #9aa0a6;
-    --bg-color: #202124;
-    --base-color: #1053a4;
+    --bg-color: #ffffff;
+    --base-color: #2463EB;
+    --button-color: #507fe6;
 }
 
 body {
@@ -19,6 +20,9 @@ body {
     background-color: var(--bg-color);
     color: var(--secondary-color);
     font-family: "Quicksand", sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
@@ -34,10 +38,6 @@ header {
    gap: 2rem;
 }
 
-.titulo-redaçao {
-    color: var(--base-color);
-}
-
 header h1{
     font-family: "Bebas Neue", sans-serif;
     font-size: 2.2rem;
@@ -45,6 +45,10 @@ header h1{
     font-weight: 500;
     white-space: nowrap;
     color: var(--primary-color);
+}
+
+.detaque-redacao {
+    color: var(--base-color);
 }
 
 header div {
@@ -56,13 +60,13 @@ header div {
 div input {
     padding: 12px 8px 12px 40px; 
     border-radius: 0.8rem;
-    border: 1px solid var(--base-color);
+    border: 2px solid var(--base-color);
     background: var(--bg-color);
     font-family: inherit;
     font-size: 15px;
     transition: all 0.2s ease;
     width: 30rem;
-    color: var(--secondary-color);
+    color: var(--tertiary-color);
     margin-right: .5rem;
     height: 40px;               
     line-height: 40px;          
@@ -72,12 +76,13 @@ div input::placeholder {
     font-size: 15px;
     font-weight: 300;
     color: var(--secondary-color);
+    font-weight: 500;
 }
 
 div input:focus {
     outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.1rem var(--primary-color);
+    border-color: var(--base-color);
+    box-shadow: 0 0 0 0.1rem var(--button-color);
 }
 
 header div .fa-magnifying-glass {
@@ -98,26 +103,42 @@ header div .fa-magnifying-glass {
     font-size: 13px;
     white-space: nowrap;
     transition: background-color 0.2s ease, color 0.2s ease;
-    color: var(--secondary-color);
-    border: 1px solid var(--base-color);
+    color: var(--bg-color);
+    border: 1px solid var(--button-color);
 }
 
 #botao-busca:hover {
-    background-color: var(--primary-color);
+    background-color: var(--button-color);
     color: var(--bg-color);
-    box-shadow: 0 0 0 0.1rem var(--primary-color);
+    box-shadow: 0 0 0 0.1rem var(--base-color);
 }
 
 #botao-busca:active {
     transform: scale(0.98);
 }
 
+.card-titulo {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 22px;
+}
+
+.destaque {
+    color: var(--base-color);
+}
+
+.card-titulo p {
+    color: var(--secondary-color);
+    font-weight: 500;
+    font-size: 18px;
+}
+
 main {
-    overflow-y: scroll; /* Adiciona uma barra de rolagem vertical se o conteúdo exceder a altura */
     max-width: 80rem; /* Largura máxima do conteúdo principal */
     margin: 0 auto; /* Centraliza o conteúdo principal horizontalmente */
     margin-top: 2rem; /* Margem no topo */
-    height: calc(100vh - 10rem - 4rem); /* Calcula a altura para preencher o espaço restante da tela */ 
+    width: 100%; /* Garante que o main ocupe a largura */
+    flex-grow: 1; /* Faz com que o main ocupe o espaço restante */
 }
 
 article {
@@ -139,8 +160,8 @@ article:hover {
 
 article h2 {
     margin-top: 0; /* Remove a margem superior */
-    font-weight: 600; /* Peso da fonte */
-    font-size: 1.6rem; /* Tamanho da fonte */
+    font-weight: 700; /* Peso da fonte */
+    font-size: 26px; /* Tamanho da fonte */
     border-bottom: none; /* Sem borda inferior */
     padding-bottom: 0; /* Sem espaçamento interno inferior */
     margin-bottom: 0.25rem; /* Margem inferior */
@@ -153,27 +174,10 @@ article p {
     font-size: 1rem; /* Tamanho da fonte */
     margin-bottom: 0.5rem; /* Margem inferior */
     color: var(--secondary-color); /* Cor do texto */
-}
-
-article p strong {
-    color: var(--tertiary-color); /* Cor do texto em negrito */
-    font-weight: 400; /* Peso da fonte */
-}
-
-article a {
-    color: var(--primary-color); /* Cor do link */
-    text-decoration: none; /* Remove o sublinhado padrão */
-    font-weight: 200; /* Peso da fonte */
-}
-
-article a:hover {
-    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+    font-weight: 500;
 }
 
 .footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
     width: 100%;
     color: var(--tertiary-color);
     background-color: var(--bg-color);
@@ -197,13 +201,14 @@ article a:hover {
 }
 
 .footer-links a {
-    color: var(--primary-color);
+    color: var(--base-color);
     text-decoration: none; 
     transition: color 0.2s; 
+    font-weight: 500;
 }
 
 .footer-links a:hover {
-    color: var(--base-color); 
+    color: #f90000; 
 }
 
 @media (max-width: 768px) {
