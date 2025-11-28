@@ -142,15 +142,84 @@ main {
 }
 
 article {
-    background: none; /* Sem cor de fundo */
-    border-radius: 0; /* Sem bordas arredondadas */
-    padding: 0; /* Remove o padding */
-    padding: 0 1rem; /* Espaçamento interno nos lados */
-    margin-bottom: 1.25rem; /* Margem inferior */
+    background:  #ffffff;
+    border-radius: 16px; 
+    padding: 1.4rem 1.6rem;
+    margin-bottom: 1.5rem; /* Margem inferior */
     box-shadow: none; /* Sem sombra */
     transition: background-color 0.3s ease, border-bottom-color 0.3s ease; /* Transição suave */
     border-bottom: 1px solid var(--bg-color); /* Borda inferior */
     padding-bottom: 1.5rem; /* Espaçamento interno inferior */
+    align-items: center;
+    display: flex;
+    gap: 2rem;
+}
+
+.card-icon {
+    font-size: 1.4rem;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.card-educacao {
+    border: 2px solid #2463eb70;
+    background-color: #2463eb14;
+    color: #2463EB;
+}
+
+.card-saude {
+    border: 2px solid #00c89666;
+    background-color: #00c89614;
+    color: #00C896;
+}
+
+.card-ambiente {
+    border: 2px solid #e0541d61;
+    background-color: #e0541d11;
+    color: #E0551D;
+}
+
+.card-tecnologia {
+    border: 2px solid #2463eb70;
+    background-color: #2463eb14;
+    color: #2463EB;
+}
+
+.card-cultura {
+    border: 2px solid #00c89666;
+    background-color: #00c89614;
+    color: #00C896;
+}
+
+.card-seguranca {
+    border: 2px solid #e0541d61;
+    background-color: #e0541d11;
+    color: #E0551D;
+}
+
+.card-economia {
+    border: 2px solid #2463eb70;
+    background-color: #2463eb14;
+    color: #2463EB;
+}
+
+.card-politica {
+    border: 2px solid #00c89666;
+    background-color: #00c89614;
+    color: #00C896;
+}
+
+.card-desigualdade {
+    border: 2px solid #e0541d61;
+    background-color: #e0541d11;
+    color: #E0551D;
+}
+
+.card-inovacao {
+    border: 2px solid #2463eb70;
+    background-color: #2463eb14;
+    color: #2463EB;
 }
 
 article:hover {
@@ -182,7 +251,7 @@ article p {
     color: var(--tertiary-color);
     background-color: var(--bg-color);
     padding: 15px 20px;
-    border-top: 1px solid #3c4043;
+    border-top: 1px solid #3c40434f;
     font-size: 0.8rem;
 }
 
