@@ -13,6 +13,16 @@
     --bg-color: #ffffff;
     --base-color: #2463EB;
     --button-color: #507fe6;
+    --border-color: #e0e0e0;
+}
+
+/* Variáveis para o modo escuro */
+body[data-theme="dark"] {
+    --primary-color: #e8eaed;
+    --secondary-color: #bdc1c6;
+    --bg-color: #202124;
+    --base-color: #8ab4f8;
+    --border-color: #3c4043;
 }
 
 body {
@@ -34,7 +44,7 @@ header {
    top: 0;
    background: var(--bg-color);
    z-index: 10;
-   border-bottom: 1px solid var(--bg-color);
+   border-bottom: 1px solid var(--border-color);
    gap: 2rem;
 }
 
@@ -55,6 +65,7 @@ header div {
     position: relative; 
     display: flex; 
     align-items: center; 
+    flex-wrap: wrap; /* Permite que o botão quebre a linha em telas menores */
 }
 
 div input {
@@ -117,6 +128,42 @@ header div .fa-magnifying-glass {
     transform: scale(0.98);
 }
 
+/* Estilos para o botão de modo escuro */
+.dark-mode-button {
+    background-color: transparent;
+    border: 2px solid var(--base-color);
+    color: var(--base-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    flex-shrink: 0; /* Impede que o botão encolha */
+    margin-left: 0.5rem;
+}
+
+.dark-mode-button:hover {
+    background-color: var(--base-color);
+    color: var(--bg-color);
+}
+
+/* Esconde o ícone do sol por padrão */
+.dark-mode-button .fa-sun {
+    display: none;
+}
+
+/* Mostra o ícone do sol e esconde a lua no modo escuro */
+body[data-theme="dark"] .dark-mode-button .fa-sun {
+    display: block;
+}
+body[data-theme="dark"] .dark-mode-button .fa-moon {
+    display: none;
+}
+
 .card-titulo {
     text-align: center;
     color: var(--primary-color);
@@ -142,13 +189,12 @@ main {
 }
 
 article {
-    background:  #ffffff;
+    background:  var(--bg-color);
     border-radius: 16px; 
     padding: 1.4rem 1.6rem;
     margin-bottom: 1.5rem; /* Margem inferior */
     box-shadow: none; /* Sem sombra */
-    transition: background-color 0.3s ease, border-bottom-color 0.3s ease; /* Transição suave */
-    border-bottom: 1px solid var(--bg-color); /* Borda inferior */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transição suave */
     padding-bottom: 1.5rem; /* Espaçamento interno inferior */
     align-items: center;
     display: flex;
@@ -251,7 +297,7 @@ article p {
     color: var(--tertiary-color);
     background-color: var(--bg-color);
     padding: 15px 20px;
-    border-top: 1px solid #3c40434f;
+    border-top: 1px solid var(--border-color);
     font-size: 0.8rem;
 }
 

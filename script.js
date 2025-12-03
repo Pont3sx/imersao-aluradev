@@ -1,117 +1,80 @@
-const campoBusca = document.querySelector('input[type="text"]');
-const botaoBusca = document.getElementById('botao-busca');
-const containerCards = document.querySelector('.card-container');
+document.addEventListener('DOMContentLoaded', () => {
+    // --- SELETORES ---
+    const campoBusca = document.querySelector('input[type="text"]');
+    const botaoBusca = document.getElementById('botao-busca');
+    const containerCards = document.querySelector('.card-container');
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
 
-function filtrarCards() {
-    if (!containerCards) return;
+    // --- LÓGICA DO MODO ESCURO ---
 
-    const termo = (campoBusca?.value || '').toLowerCase().trim();
-
-    let cards = containerCards.querySelectorAll('article');
-
-    if (cards.length === 0) {
-        carregarDadosEConstruirCards().then(() => {
-            cards = containerCards.querySelectorAll('article');
-            aplicarFiltro(cards, termo);
-        });
-        return;
-    }
-
-    aplicarFiltro(cards, termo);
-}
-
-function aplicarFiltro(cardsNodeList, termo) {
-    const cards = Array.from(cardsNodeList);
-
-    if (!termo) {
-        cards.forEach(card => card.style.display = '');
-        return;
-    }
-
-    cards.forEach(card => {
-        const titulo = card.querySelector('h2')?.textContent.toLowerCase() ?? '';
-        const descricao = card.querySelector('p')?.textContent.toLowerCase() ?? '';
-        const conteudo = (titulo + ' ' + descricao);
-
-        if (conteudo.includes(termo)) {
-            card.style.display = '';
-        } else {
-            card.style.display = 'none';
-        }
-    });
-}
-
-async function carregarDadosEConstruirCards() {
-  if (!containerCards) return;
-
-  try {
-    const resp = await fetch('dados.json');
-    const dados = await resp.json();
-
-    const icones = {
-      'educacao': 'fa-graduation-cap',
-      'saude': 'fa-heart-pulse',
-      'meio-ambiente': 'fa-leaf',
-      'tecnologia': 'fa-microchip',
-      'cultura': 'fa-palette',
-      'seguranca-publica': 'fa-shield-halved',
-      'economia': 'fa-coins',
-      'politica-cidadania': 'fa-landmark-flag',
-      'desigualdade-questoes-sociais': 'fa-scale-balanced',
-      'ciencia-innovacao': 'fa-flask-vial'
+    // Função para aplicar o tema (claro ou escuro)
+    const applyTheme = (theme) => {
+        document.body.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
     };
 
-    function slugify(text) {
-      return text.toLowerCase()
-        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-        .replace(/[^\w\s-]/g, '')
-        .trim().replace(/\s+/g, '-');
+    // Evento de clique no botão para alternar o tema
+    darkModeToggle.addEventListener('click', () => {
+        const currentTheme = document.body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        applyTheme(newTheme);
+    });
+
+    // Define o tema inicial com base no que está salvo ou na preferência do sistema
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const defaultTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+    applyTheme(defaultTheme);
+
+
+    // --- LÓGICA DA BUSCA ---
+
+    function aplicarFiltro(termo) {
+        const cards = containerCards.querySelectorAll('article');
+        const termoBusca = termo.toLowerCase().trim();
+
+        if (!termoBusca) {
+            cards.forEach(card => card.style.display = 'flex');
+            return;
+        }
+
+        cards.forEach(card => {
+            const titulo = card.querySelector('h2')?.textContent.toLowerCase() || '';
+            const descricao = card.querySelector('p')?.textContent.toLowerCase() || '';
+            const conteudo = titulo + ' ' + descricao;
+
+            if (conteudo.includes(termoBusca)) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
     }
 
-    containerCards.innerHTML = '';
-
-    for (const item of dados) {
-      const slug = slugify(item.eixos);
-      const classe = `card-${slug}`;
-      const icone = icones[slug] || 'fa-circle-info';
-
-      const article = document.createElement('article');
-      article.classList.add('card', classe);
-
-      article.innerHTML = `
-        <div class="card-icon"><i class="fa-solid ${icone}"></i></div>
-        <div class="card-info">
-          <h2>${item.eixos}</h2>
-          <p>${item.descricao}</p>
-        </div>
-      `;
-
-      containerCards.appendChild(article);
+    function iniciarBusca() {
+        if (campoBusca) {
+            aplicarFiltro(campoBusca.value);
+        }
     }
-  } catch (err) {
-    console.error('Erro ao carregar dados.json:', err);
-  }
-}
 
-if (botaoBusca) {
-  botaoBusca.addEventListener('click', e => {
-    e.preventDefault();
-    filtrarCards();
-  });
-}
-
-if (campoBusca) {
-  campoBusca.addEventListener('keydown', e => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      filtrarCards();
+    // Adiciona eventos para o botão de busca e para a tecla "Enter"
+    if (botaoBusca) {
+        botaoBusca.addEventListener('click', (e) => {
+            e.preventDefault();
+            iniciarBusca();
+        });
     }
-  });
-}
 
-document.addEventListener('DOMContentLoaded', () => {
-  const existing = containerCards.querySelectorAll('article');
-  if (!existing || existing.length === 0) {
-    carregarDadosEConstruirCards();
-  }
+    if (campoBusca) {
+        campoBusca.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                iniciarBusca();
+            }
+        });
+        // Opcional: filtrar enquanto digita
+        // campoBusca.addEventListener('input', () => {
+        //     iniciarBusca();
+        // });
+    }
 });
